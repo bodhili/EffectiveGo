@@ -19,6 +19,8 @@ type writeOp struct {
 }
 
 func main() {
+	r := 'a'
+	fmt.Println(r)
 
 	var readOps uint64
 	var writeOps uint64
