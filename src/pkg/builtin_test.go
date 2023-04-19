@@ -120,6 +120,21 @@ func TestSliceAppend(t *testing.T) {
 	}
 }
 
+func TestMakeChan(t *testing.T) {
+	c := make(chan string)
+	defer close(c)
+
+	go func() {
+		c <- "A"
+	}()
+
+	s := <-c
+
+	if s != "A" {
+		t.Error("S is not A.")
+	}
+}
+
 func TestMapMake(t *testing.T) {
 	m := make(map[string]int)
 
