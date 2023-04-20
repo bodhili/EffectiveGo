@@ -19,10 +19,10 @@ func TestNewBufIOReader(t *testing.T) {
 		t.Logf("read string is:[%v] \n", s)
 	}
 
-	bytes := make([]byte, 10, 10)
-	n, err := reader.Read(bytes)
+	bs := make([]byte, 10, 10)
+	n, err := reader.Read(bs)
 	if err == nil {
-		t.Logf("avaible bytes:[%d], string:[%v]", n, string(bytes))
+		t.Logf("avaible bytes:[%d], string:[%v]", n, string(bs))
 	}
 }
 

@@ -34,7 +34,7 @@ func (c *Cookie) timeout(timeout time.Time) {
 }
 
 func TestPolymorphism(t *testing.T) {
-	defined := Cookie{
+	var defined cookie = &Cookie{
 		Id:      string(rune(rand.Intn(1 << 8))),
 		Timeout: time.Now(),
 	}
@@ -46,7 +46,7 @@ func TestPolymorphism(t *testing.T) {
 		t.Errorf("Cookie id is not equalivet.")
 	}
 
-	t.Logf("cookie:{%+v}", defined)
+	t.Logf("cookie:%+v", defined)
 }
 
 func TestChannel(t *testing.T) {

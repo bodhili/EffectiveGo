@@ -36,8 +36,17 @@ func TestError(t *testing.T) {
 	}
 
 	t.Logf("buf bytes:%v", buf.Bytes())
-
 	t.Logf("marshal szie:[%d], buf size:[%d]", len(errs), buf.Len())
+}
+
+const marshalParseErr = 1001
+
+type ResponseError struct {
+	Code       int               `json:"code"`
+	Err        string            `json:"err"`
+	Type       string            `json:"type"`
+	StatusCode int               `json:"status_code"`
+	Headers    map[string]string `json:"headers"`
 }
 
 func NewResponseErr(code int, p string, err string, statusCode int, headers map[string]string) *ResponseError {
@@ -49,16 +58,6 @@ func NewResponseErr(code int, p string, err string, statusCode int, headers map[
 		Headers:    headers,
 	}
 }
-
-type ResponseError struct {
-	Code       int               `json:"code"`
-	Err        string            `json:"err"`
-	Type       string            `json:"type"`
-	StatusCode int               `json:"status_code"`
-	Headers    map[string]string `json:"headers"`
-}
-
-const marshalParseErr = 1001
 
 func (re *ResponseError) Error() string {
 	ret, err := json.Marshal(*re)
