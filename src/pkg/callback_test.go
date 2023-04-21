@@ -21,7 +21,7 @@ func TestCallBack(t *testing.T) {
 	hook(t, nil, err)
 }
 
-type listener func(addr string, maxHeaderBytes int)
+type listener func(addr string, maxHeaderBytes int) // defined *
 
 func listenAndServe(addr string, handler http.Handler, listener listener) error {
 	server := http.Server{
