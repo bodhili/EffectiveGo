@@ -8,7 +8,7 @@ import (
 
 const shortDuration = 1 * time.Millisecond
 
-func TestContext(t *testing.T) {
+func TestContextDeadline(t *testing.T) {
 	d := time.Now().Add(shortDuration)
 
 	ctx, cancelFunc := context.WithDeadline(context.Background(), d)
