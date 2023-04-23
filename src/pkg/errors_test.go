@@ -6,7 +6,11 @@ import (
 	"encoding/base64"
 	"encoding/gob"
 	"encoding/json"
+	"errors"
+	"fmt"
+	"io/fs"
 	"net/http"
+	"os"
 	"testing"
 )
 
@@ -74,5 +78,42 @@ func statusText(code int) string {
 		return "marshal parse is error"
 	default:
 		return "invalid status code"
+	}
+}
+
+func TestErrorsJoin(t *testing.T) {
+	err1 := errors.New("err1")
+	err2 := errors.New("err2")
+	err := errors.Join(err1, err2)
+
+	if errors.Is(err, err1) {
+		t.Log("err is err1")
+	}
+
+	if errors.Is(err, err2) {
+		t.Log("err is err2")
+	}
+}
+
+func TestErrorsUnWarp(t *testing.T) {
+	err1 := errors.New("error1")
+	err2 := fmt.Errorf("error2: [%w]", err1)
+	fmt.Println(errors.Unwrap(err2))
+}
+
+func TestErrorAsAndIs(t *testing.T) {
+	if _, err := os.Open("non-existing"); err != nil {
+		var pathError *fs.PathError
+		if errors.As(err, &pathError) {
+			fmt.Println("Failed at path:", pathError.Path)
+		} else {
+			fmt.Println(err)
+		}
+
+		if errors.Is(err, fs.ErrNotExist) {
+			fmt.Println("file does not exist")
+		} else {
+			fmt.Println(err)
+		}
 	}
 }
