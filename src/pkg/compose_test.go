@@ -49,4 +49,4 @@ func TestCustom(t *testing.T) {
 	t.Logf("%+v", c)
 }
 
-type CustomMap[T comparable, V int | string] map[T]V
+type CustomMap[T comparable, V comparable] map[T]V
