@@ -38,3 +38,27 @@ func TestTimeParseInLocation(t *testing.T) {
 		t.Error(err)
 	}
 }
+
+func TestTimeFunc(t *testing.T) {
+	before := time.Now()
+	after := time.Now().Add(1)
+
+	t.Log(before.Before(after))
+	t.Log(before.After(after))
+	t.Log(before.Equal(after))
+	t.Log(before.Compare(after))
+
+	t.Log(after.Year())
+	t.Log(after.Month())
+	t.Log(after.Day())
+	t.Log(after.YearDay())
+	t.Log(after.Hour())
+	t.Log(after.Minute())
+	t.Log(after.Second())
+	t.Log(after.Nanosecond())
+	t.Log(after.Weekday())
+	t.Log(after.ISOWeek())
+	t.Log(after.IsZero())
+	t.Log(after.Truncate(-1))
+	t.Log(after)
+}
