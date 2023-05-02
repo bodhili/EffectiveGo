@@ -1,7 +1,6 @@
 package leetcode
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -9,24 +8,24 @@ func TestSwap(t *testing.T) {
 	i, j := 1, 2
 	j, i = i, j
 
-	fmt.Println(i)
-	fmt.Println(j)
+	t.Log(i)
+	t.Log(j)
 
 	swap(i, j)
-	fmt.Println(i)
-	fmt.Println(j)
+	t.Log(i)
+	t.Log(j)
 
-	fmt.Printf("%b \n", i)
-	fmt.Printf("%b \n", j)
+	t.Logf("%b \n", i)
+	t.Logf("%b \n", j)
 
-	fmt.Println("i | j", i|j)
-	fmt.Println("i ^ j", i^j)
+	t.Log("i | j", i|j)
+	t.Log("i ^ j", i^j)
 
 	nums := []int{1, 2, 3, 4, 3, 2, 1}
-	fmt.Println(only0(nums))
-	fmt.Println(only1(nums))
+	t.Log(only0(nums))
+	t.Log(only1(nums))
 
-	fmt.Printf("%b \n", 8)
+	t.Logf("%b \n", 8)
 }
 
 func swap(i, j int) {
