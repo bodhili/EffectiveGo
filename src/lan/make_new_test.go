@@ -1,6 +1,10 @@
 package lan
 
-import "testing"
+import (
+	"math/rand"
+	"testing"
+	"unsafe"
+)
 
 func TestMakeNewSlice(t *testing.T) {
 	s0 := make([]string, 0, 10)
@@ -31,6 +35,7 @@ func TestMakeNewMap(t *testing.T) {
 
 type user struct {
 	Name string
+	ID   int
 }
 
 // new 适用于struct更加格式,只是分配指针内存，不进行初始化
@@ -39,6 +44,8 @@ func TestNewStructType(t *testing.T) {
 	t.Log(*u) // {}
 
 	(*u).Name = "Tom"
+	(*u).ID = rand.Int()
 
-	t.Log(*u)
+	t.Logf("%+v \n", *u)
+	t.Log(unsafe.Sizeof(u))
 }
