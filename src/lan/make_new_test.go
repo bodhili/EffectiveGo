@@ -28,3 +28,17 @@ func TestMakeNewMap(t *testing.T) {
 	t.Log(m0)
 	t.Log(*m1)
 }
+
+type user struct {
+	Name string
+}
+
+// new 适用于struct更加格式,只是分配指针内存，不进行初始化
+func TestNewStructType(t *testing.T) {
+	u := new(user)
+	t.Log(*u) // {}
+
+	(*u).Name = "Tom"
+
+	t.Log(*u)
+}
