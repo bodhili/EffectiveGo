@@ -59,6 +59,15 @@ func convert(p *int) (v int32) {
 	return
 }
 
+type Nil struct {
+	name string
+}
+
+func TestStructSize(t *testing.T) {
+	size := unsafe.Sizeof(Nil{})
+	t.Log(size)
+}
+
 func convert0(p *int) int32 {
 	q := (*int32)(unsafe.Pointer(p))
 	*q = 10
