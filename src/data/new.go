@@ -29,3 +29,36 @@ func main() {
 	fmt.Println(p)
 	fmt.Println(v)
 }
+
+type File struct {
+	fd      int
+	nepipe  int
+	name    string
+	dirinfo any
+}
+
+func NewFile(fd int, name string) *File {
+	if fd < 0 {
+		return nil
+	}
+	f := new(File)
+	f.fd = fd
+	f.name = name
+	f.dirinfo = nil
+	f.nepipe = 0
+	return f
+}
+
+func NewFile1(fd int, name string) *File {
+	if fd < 0 {
+		return nil
+	}
+	f := File{fd, 0, name, nil}
+	f = File{
+		fd:      fd,
+		name:    name,
+		nepipe:  0,
+		dirinfo: nil,
+	} // difference ways
+	return &f
+}
