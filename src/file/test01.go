@@ -12,6 +12,11 @@ func contents(filename string) (string, error) {
 		return "", err
 	}
 
+	envErr := os.Setenv("keys", "demo")
+	if envErr != nil {
+		return "", envErr
+	}
+
 	defer func(f *os.File) {
 		err := f.Close()
 		if err != nil {
